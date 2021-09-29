@@ -2,8 +2,12 @@ syntax = "proto3";
 
 package api;
 
+option go_package="/pkg/api";
+
 service Test {
   rpc testMethod(TestRequest) returns (TestResponse) {}
+
+  rpc getInfo (GetInfoRequest) returns (GetInfoResponse);
 }
 
 message TestRequest {
@@ -14,3 +18,19 @@ message TestRequest {
 message TestResponse {
   string str = 1;
 }
+
+message GetInfoRequest {
+  int64 number = 1;
+}
+
+message GetInfoResponse {
+  int64 number1 = 1;
+  test number2 = 2;
+
+  enum test {
+    int64 = 0;
+    int32 = 1;
+    int16 = 2;
+  }
+}
+
